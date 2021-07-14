@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+
+    <script>
+        if (localStorage.theme == 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 </head>
 
 <body class="text-gray-600 font-body">
@@ -52,26 +60,49 @@
         </div>
         <!--end nav-->
 
-        <main class="px-16 py-6 bg-gray-100 md:col-span-2">
+        <main class="px-16 py-6 bg-gray-100 dark:bg-gray-900 md:col-span-2">
             <div class="flex justify-center md:justify-end">
-                <a href="#" class="text-primary btn border-primary md:border-2 hover:bg-primary hover:text-white transition ease-out duration-500">Login</a>
-                <a href="#" class="text-primary ml-2 btn border-primary md:border-2 hover:bg-primary hover:text-white transition ease-out duration-500">Sign Up</a>
+                <a href="#" class="text-primary btn dark:text-gray-200 dark:border-secondary-100 border-primary md:border-2 hover:bg-primary hover:text-white transition ease-out duration-500">Login</a>
+                <a href="#" class="text-primary ml-2 dark:text-gray-200 dark:border-secondary-100 btn border-primary md:border-2 hover:bg-primary hover:text-white transition ease-out duration-500">Sign Up</a>
+                <div class="flex items-center ml-5">
+                    <div class="flex justify-center items-center mx-2" x-data="{toggle: '0'}" id="toggle">
+                        <div class="mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " :class="[toggle === '1' ? 'text-gray-200' : 'text-yellow-500']" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                              </svg>
+                        </div>
+                        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+
+                        <div class="relative rounded-full w-12 h-6 transition duration-200 ease-linear" :class="[toggle === '1' ? 'bg-green-400' : 'bg-gray-400']">
+                            <label for="toggle" class="absolute left-0 bg-white border-2 mb-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer" :class="[toggle === '1' ? 'translate-x-full border-green-400' : 'translate-x-0 border-gray-400']"></label>
+                            <input type="checkbox" id="toggle" name="toggle" class="appearance-none w-full h-full active:outline-none focus:outline-none" @click="toggle === '0' ? toggle = '1' : toggle = '0'" />
+                        </div>
+                        <div class="ml-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" :class="[toggle === '1' ? 'text-white' : 'text-gray-900']" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                              </svg>
+                        </div>
+                    </div>
+
+
+
+                </div>
             </div>
             <header>
-                <h2 class="text-gray-700 text-6xl font-semibold">Recipe</h2>
-                <h3 class="text-2xl font-semibold">For Developers</h3>
+                <h2 class="text-gray-700 text-6xl dark:text-gray-200 font-semibold">Recipe</h2>
+                <h3 class="text-2xl font-semibold dark:text-gray-300">For Developers</h3>
             </header>
 
             <div>
-                <h4 class="font-bold mt-12 pb-2 border-b border-gray-200">Latest Recipe</h4>
+                <h4 class="font-bold mt-12 pb-2 border-b dark:text-gray-200 border-gray-200">Latest Recipe</h4>
 
                 <div class="mt-8 grid lg:grid-cols-3 gap-10">
                     <!--cards-->
-                    <div class="card hover:shadow-2xl">
+                    <div class="dark:bg-gray-800 card hover:shadow-2xl hover:-rotate-6 transform">
                         <img src="img/53110049.gif" alt="pizza" class="w-full h-32 sm:h-48 object-cover">
                         <div class="m-4">
-                            <span class="font-bold">Cheesy Pizza</span>
-                            <span class="block text-gray-500">Recipe by Shalitha</span>
+                            <span class="font-bold dark:text-gray-100">Cheesy Pizza</span>
+                            <span class="block text-gray-500 ">Recipe by Shalitha</span>
                         </div>
                         <div class="badge">
                             <svg xmlns="http://www.w3.org/2000/svg " class="h-5 w-5 inline-block" fill="none " viewBox="0 0 24 24 " stroke="currentColor ">
@@ -81,10 +112,10 @@
                         </div>
                     </div>
 
-                    <div class="card hover:shadow-2xl">
+                    <div class="dark:bg-gray-800 card hover:shadow-2xl">
                         <img src="img/burger.jpg " alt="burger " class="w-full h-32 sm:h-48 object-cover ">
                         <div class="m-4 ">
-                            <span class="font-bold ">Beef Burger</span>
+                            <span class="font-bold dark:text-gray-200">Beef Burger</span>
                             <span class="block text-gray-500 ">Recipe by Shalitha</span>
                         </div>
                         <div class="badge ">
@@ -95,10 +126,10 @@
                         </div>
                     </div>
 
-                    <div class="card hover:shadow-2xl">
+                    <div class="dark:bg-gray-800 card hover:shadow-2xl">
                         <img src="img/maxresdefault.jpg " alt="pasta " class="w-full h-32 sm:h-48 object-cover ">
                         <div class="m-4 ">
-                            <span class="font-bold ">Hot Pasta</span>
+                            <span class="font-bold dark:text-gray-200">Hot Pasta</span>
                             <span class="block text-gray-500 ">Recipe by Shalitha</span>
                         </div>
                         <div class="badge ">
@@ -110,14 +141,14 @@
                     </div>
                 </div>
 
-                <h4 class="font-bold mt-12 pb-2 border-b border-gray-200 ">Most Populer</h4>
+                <h4 class="font-bold mt-12 pb-2 border-b border-gray-200 dark:text-gray-200">Most Populer</h4>
 
                 <div class="mt-8 ">
                     <!--cards-->
                 </div>
 
                 <div class="mt-8 flex justify-center ">
-                    <div class="bg-secondary-100 text-secondary-200 btn hover:shadow-inner transform hover:scale-125 hover:bg-opacity-50 transition ease-out duration-300">
+                    <div class="bg-secondary-100 text-secondary-200 btn hover:shadow-inner transform hover:scale-125 hover:bg-opacity-75 transition ease-out duration-300">
                         Load More
                     </div>
                 </div>
