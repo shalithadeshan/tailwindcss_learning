@@ -4,12 +4,14 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build-css": "tailwindcss -i src/styles.css -o public/styles.css"
+        "build-css": "tailwindcss -i src/styles.css -o public/styles.css",
+        "prod": "NODE_ENV=production tailwindcss -i src/styles.css -o public/styles.css"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "tailwindcss": "^2.2.4"
+        "tailwindcss": "^2.2.4",
+        "win-node-env": "^0.4.0"
     }
 }
